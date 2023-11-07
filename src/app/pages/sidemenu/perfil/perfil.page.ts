@@ -28,10 +28,11 @@ export class PerfilPage implements OnInit {
     let user = this.user();
     let path = `users/${user.uid}`
     
-    const dataUrl = (await this.utilsSvc.takePicture('Imagen de perfil')).dataUrl;
-
     const cargando = await this.utilsSvc.cargando();
     await cargando.present();
+    
+    const dataUrl = (await this.utilsSvc.takePicture('Imagen de perfil')).dataUrl;
+
 
     let imagepath = `${user.uid}/perfil`;
     user.image = await this.firebaseSvc.subirImagen(imagepath,dataUrl);

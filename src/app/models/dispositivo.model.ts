@@ -1,6 +1,6 @@
 export interface Dispositivo
     {
-      Image: string,
+      image: string,
       name: string,
       soldUnits: number,
       price: number,

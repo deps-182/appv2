@@ -16,7 +16,7 @@ export class AgregarComponent  implements OnInit {
 
   form = new FormGroup({
     id: new FormControl(''),
-    Image: new FormControl('', [Validators.required]), 
+    image: new FormControl('', [Validators.required]), 
     price: new FormControl(null, [Validators.required, Validators.minLength(0)]), 
     soldUnits: new FormControl(null, [Validators.required, Validators.min(0)]), 
     name: new FormControl('', [Validators.required, Validators.minLength(4)]), 
@@ -35,7 +35,7 @@ export class AgregarComponent  implements OnInit {
   //Seleccionar foto
   async takeImage(){
     const DataUrl = (await this.utilsSvc.takePicture('Imagen del dispositivo')).dataUrl;
-    this.form.controls.Image.setValue(DataUrl);
+    this.form.controls.image.setValue(DataUrl);
   }
 
   submit(){
@@ -65,10 +65,10 @@ export class AgregarComponent  implements OnInit {
       await cargando.present();
       
       //subir imagen y obtener url
-      let dataUrl = this.form.value.Image;
+      let dataUrl = this.form.value.image;
       let imagepath = `${this.user.uid}/${Date.now()}`;
       let imageUrl= await this.firebaseSvc.subirImagen(imagepath,dataUrl)
-      this.form.controls.Image.setValue(imageUrl);
+      this.form.controls.image.setValue(imageUrl);
 
       delete this.form.value.id
 
@@ -108,11 +108,11 @@ export class AgregarComponent  implements OnInit {
       await cargando.present();
       
       //si cambio la imagen, subir una nueva y obtener la url
-      if(this.form.value.Image !== this.dispositivo.Image){
-        let dataUrl = this.form.value.Image;
-        let imagepath = await this.firebaseSvc.getFilePath(this.dispositivo.Image);
+      if(this.form.value.image !== this.dispositivo.image){
+        let dataUrl = this.form.value.image;
+        let imagepath = await this.firebaseSvc.getFilePath(this.dispositivo.image);
         let imageUrl= await this.firebaseSvc.subirImagen(imagepath,dataUrl)
-        this.form.controls.Image.setValue(imageUrl);
+        this.form.controls.image.setValue(imageUrl);
       }
       
 

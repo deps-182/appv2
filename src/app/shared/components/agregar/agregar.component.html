@@ -4,11 +4,11 @@
     <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
         
         <!--Si existe una imagen-->
-        <ion-avatar *ngIf="form.value.Image">
-            <img [src]="form.value.Image" />
+        <ion-avatar *ngIf="form.value.image">
+            <img [src]="form.value.image" />
         </ion-avatar>
         <!--Si no existe-->
-        <ion-icon class="image-icon" *ngIf="!form.value.Image" name="image-outline"></ion-icon>
+        <ion-icon class="image-icon" *ngIf="!form.value.image" name="image-outline"></ion-icon>
         <br>
         <!--TOMAR O SELECCIONAR IMAGEN-->
         <ion-button (click)="takeImage()" size="small" shape="round">

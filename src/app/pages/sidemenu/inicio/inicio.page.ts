@@ -102,10 +102,10 @@ ionViewWillEnter() {
     const cargando = await this.utilsSvc.cargando();
     await cargando.present();
     
-    let imagepath = await this.firebaseSvc.getFilePath(dispositivo.Image);
-    await this.firebaseSvc.eliminarDocument(imagepath);
+    let imagepath = await this.firebaseSvc.getFilePath(dispositivo.image);
+    await this.firebaseSvc.eliminarDispositivos(imagepath);
 
-    this.firebaseSvc.eliminarDocument(path).then(async res => {
+    this.firebaseSvc.eliminarDispositivos(path).then(async res => {
 
       this.dispositivos = this.dispositivos.filter(d => d.id !== dispositivo.id);
      
