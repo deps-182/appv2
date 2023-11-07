@@ -1,0 +1,78 @@
+<app-header [showMenu]="true" title="Inicio"></app-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card mode="ios" color="secondary" class="d-flex-center ion-text-center" *ngIf="!loading && dispositivos.length">
+    <div>
+      <h5> {{dispositivos.length}} </h5>
+      <p>Dispositivos</p>
+    </div>
+  </ion-card>
+
+  <!-- ==== Dispositivos ==== -->
+  <ion-list *ngIf="!loading">
+    <ion-item-sliding  class="product-item" *ngFor="let d of dispositivos">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img [src]="d.Image" />
+        </ion-avatar>
+        <ion-label>
+          <div class="name">{{d.name}}</div>
+          <div class="data">
+            <strong>Precio:</strong> {{d.price | currency: 'CLP'}}
+            <strong>Unidades vendidas:</strong> {{d.soldUnits}}
+          </div>
+          <ion-chip color="primary" mode="ios" outline="true">
+            <ion-label>Ganancia:{{d.price *d.soldUnits | currency: 'CLP'}}</ion-label>
+          </ion-chip>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options>
+
+        <ion-item-option (click)="agregarActualizar(d)">
+          <ion-icon class="option-btn"  name="create-outline"></ion-icon>
+        </ion-item-option>
+  
+        <ion-item-option (click)="confirmarEliminar(d)" color="danger">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-item-option>
+
+      </ion-item-options>
+      
+    </ion-item-sliding>
+  </ion-list>
+
+
+  <!-- ==== loading ==== -->
+  <ion-list *ngIf="loading">
+    
+      <ion-item class="product-item" *ngFor="let d of [1,1,1,1,1,1,1]">
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <div> <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text> </div>
+          <div> <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text> </div>
+        </ion-label>
+      </ion-item>
+
+  </ion-list>
+
+  <!-- ==== Sin productos disponibles ==== -->
+  <div *ngIf="!loading && !dispositivos.length" class="empty">
+    <ion-icon name="shield-outline"></ion-icon>
+    <h3>No hay dispositivos disponibles</h3>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="agregarActualizar()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
