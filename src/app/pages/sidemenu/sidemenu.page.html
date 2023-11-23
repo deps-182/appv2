@@ -18,36 +18,6 @@
         <ion-icon slot="start" [name]="p.icon"></ion-icon>
         <ion-label> {{p.title}} </ion-label>
       </ion-item>
-
-    </ion-menu-toggle>
-
-    <!-- Botones de categoría -->
-    <ion-menu-toggle auto-hide="false">
-      <ion-item (click)="PeopleDetails()">
-        <ion-icon name="people-outline" slot="start"></ion-icon>
-        <ion-label>People</ion-label>
-      </ion-item>
-    </ion-menu-toggle>
-
-    <ion-menu-toggle auto-hide="false">
-      <ion-item (click)="FilmsDetails()" detail>
-        <ion-icon slot="start" name="film-outline"></ion-icon>
-        <ion-label>Films</ion-label>
-      </ion-item>
-    </ion-menu-toggle>
-
-    <ion-menu-toggle auto-hide="false">
-      <ion-item (click)="loadVehicles()" detail>
-        <ion-icon slot="start" name="car-outline"></ion-icon>
-        <ion-label>Vehicles</ion-label>
-      </ion-item>
-    </ion-menu-toggle>
-
-    <ion-menu-toggle auto-hide="false">
-      <ion-item (click)="loadPlanets()" detail>
-        <ion-icon slot="start" name="planet-outline"></ion-icon>
-        <ion-label>Planets</ion-label>
-      </ion-item>
     </ion-menu-toggle>
 
   </ion-content>

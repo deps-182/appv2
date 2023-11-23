@@ -19,15 +19,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/sidemenu/sidemenu.module').then( m => m.SidemenuPageModule), canActivate:[AuthGuard]
   },
   {
-    path: 'apiStarWars',
-    loadChildren: () => import('./app.module').then( m => m.AppModule)
+    path: 'usuarios',
+    loadChildren: () => import('./pages/sidemenu/userslist/userslist.module').then( m => m.UserslistPageModule),
   },
   {
-    path: 'people',
-    loadChildren: () => import('./pages/api/people/people.module').then( m => m.PeoplePageModule)
-  },  {
-    path: 'films',
-    loadChildren: () => import('./pages/api/films/films.module').then( m => m.FilmsPageModule)
+    path: 'profile/:id',
+    loadChildren: () => import('./pages/sidemenu/profile/profile.module').then( m => m.ProfilePageModule),
   },
 
 ];
