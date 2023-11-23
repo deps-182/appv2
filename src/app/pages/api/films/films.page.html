@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/sidemenu/inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>films</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let movie of films">
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-content>
+            <p class="special-property">{{ movie.title }}</p>
+            <!-- Agrega más propiedades según tu necesidad -->
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ng-container *ngIf="films && films.length === 0; else noData">
+    <ion-text color="danger">No hay datos disponibles</ion-text>
+  </ng-container>
+
+  <ng-template #noData>
+    <ion-text color="warning">Cargando datos...</ion-text>
+  </ng-template>
+</ion-content>
